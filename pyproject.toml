@@ -1,0 +1,27 @@
+[build-system]
+requires      = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name        = "amd_gpu_monitor"
+version     = "1.0.0"
+description = "A professional TUI tool for monitoring AMD GPUs on Linux."
+readme      = "README.md"
+authors     = [
+  { name = "Simone", email = "catapano.smn.2001@gmail.com" },
+]
+license     = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+]
+keywords        = ["amd", "gpu", "monitor", "linux", "tui", "curses"]
+dependencies    = ["textual>=0.40.0"]
+requires-python = ">=3.7"
+
+[project.scripts]
+amd-gpu-monitor = "amd_gpu_monitor.main:main"
+
+[project.urls]
+"Homepage" = ""
