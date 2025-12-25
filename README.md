@@ -5,9 +5,6 @@
 
 A professional, lightweight, and dependency-free terminal user interface (TUI) for monitoring AMD graphics cards on Linux. It reads directly from `sysfs`, requiring no complex driver libraries.
 
-TODO
-- **Detailed View**: Inspect PCIe link speed, driver version, and all sensor inputs. [Not implemented]
-
 ## Features
 
 -   **Real-time Dashboard**: Monitor Temp, Load, VRAM, Power, Fan, and Clocks.
@@ -16,34 +13,36 @@ TODO
 
 ## Installation
 
-### From Source
+### Quick Start (Recommended)
+
+Simply use the provided helper script:
 
 ```bash
-git clone https://github.com/example/amd_gpu_monitor.git
-cd amd_gpu_monitor
+chmod +x run.sh
+./run.sh
 ```
+
+### Manual Installation (Virtual Environment)
+Because system-wide installation is restricted on many Linux distros (PEP 668), it is recommended to use a virtual environment:
+
+1.  **Install prerequisites** (Ubuntu/Debian):
+    ```bash
+    sudo apt install python3-venv
+    ```
+
+2.  **Create venv and install**:
+    ```bash
+    python3 -m venv venv
+    ./venv/bin/pip install .
+    ```
 
 ## Usage
 
-Once installed, run:
+If you installed manually via `venv`, run:
 
 ```bash
-python3 -m src.main
+./venv/bin/python3 -m src.main
 ```
-
-### CLI Arguments
-
-| Argument | Description |
-
-### Keyboard Shortcuts
-
--   **UP / DOWN** : Select GPU.
--   **ENTER**     : Show detailed information for selected GPU.
--   **q**         : Quit.
-
-## JSON API
-
-
 
 ## License
 

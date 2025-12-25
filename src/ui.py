@@ -84,10 +84,11 @@ class GPUCard(Static):
 
     def on_mount(self) -> None:
         self.update_stats()
-        self.set_interval(1.0, self.update_stats)
+
+    def update_view(self) -> None:
+        self.update_stats()
 
     def update_stats(self) -> None:
-        self.gpu.refresh()
         m = self.gpu.get_metrics_dict()
 
         self.query_one(f"#temp-{self.gpu.id}",      Label).update(f"Edge: {m['temp']:.1f}°C")
@@ -150,7 +151,16 @@ class MonitorApp(App):
 
     def on_mount(self) -> None:
         self.populate_table()
-        self.set_interval(2.0, self.update_table)
+        self.set_interval(1.0, self.on_update_tick)
+
+    def on_update_tick(self) -> None:
+        for gpu in self.gpus:
+            gpu.refresh()
+
+        for card in self.query(GPUCard):
+            card.update_view()
+
+        self.update_table()
 
     def populate_table(self):
         table = self.query_one(DataTable)
